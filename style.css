@@ -13,3 +13,9 @@ li {
   display: table;
   margin: auto;
 }
+tr {
+  border:1px solid red;
+}
+td {
+  border: 1px dashed blue;
+}
