@@ -24,7 +24,7 @@ Store.prototype.storeHours = function () {
   }
 };
 
-Store.prototype.salesPerDay = function () {
+Store.prototype.createData = function () {
   for(var i = 0; i < 15; i++){
     this.salesPerDay.push(this.cookiesPerHour());
   }
@@ -41,15 +41,12 @@ Store.prototype.toHTML = function() {
 
   var tr2 = createTr();
   for(var i = 0; i < this.salesPerDay.length; i++){
-    thB = createTr();
-    thB.textContent = this.salesPerDay[i];
-
-    tr2.appendChild(thB);
+    var td = createTd (this.salesPerDay[i]);
+    tr2.appendChild(td);
   }
-  tablebody.appendChild(tr);
+  thetable.appendChild(tr2);
 
 };
-toHTML ();
 
 function createTr (){
   return document.createElement('tr');
@@ -61,31 +58,23 @@ function createTh (data){
   th.appendChild(node);
   return th;
 };
+function createTd (data){
+  var td = document.createElement('td');
+  var node = document.createTextNode(data);
+  td.appendChild(node);
+  return td;
+}
 
-
-
-
-
-
-
-// Store.prototype.toHTML d= function
-//   var thetable = document.getElementById ('thetable');
-//   var tr2 = document.createElement('tr2');
-//   var th2 = document.createElement('th2');
-//   var thB;
-//   for(var i = 0; i < this.hoursOpen.length; i++){
-//     thB = document.createElement('th2');
-//     thB.textContent = this.hoursOpen[i];
-//
-//     tr2.appendChild(thB);
-//   }
-//   thetable.appendChild(tr2);
-//   tr2.appendChild(th2);
-// };
-
-
-var newStore = new Store(a,b,c);
+var newStore = new Store(23,65,7);
+newStore.createData ();
 newStore.toHTML ();
+
+
+
+
+
+
+
 // newStore.toHTMLB ();
 
 
