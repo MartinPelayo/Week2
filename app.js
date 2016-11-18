@@ -1,6 +1,7 @@
 'use strict';
 var storeHours = ['6am', '7am','8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
-function Store(minCust,maxCust,cookieSale) {
+function Store (name,minCust,maxCust,cookieSale) {
+  this.name = name;
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.cookieSale = cookieSale;
@@ -32,6 +33,7 @@ Store.prototype.createData = function () {
 Store.prototype.toHTML = function() {
   var thetable = document.getElementById ('thetable');
   var tr = createTr();
+  tr.appendChild(createTh(''));
   for(var i = 0; i < storeHours.length; i++){
     var th = createTh(storeHours[i]);
     tr.appendChild(th);
@@ -40,6 +42,7 @@ Store.prototype.toHTML = function() {
   thetable.appendChild(tr);
 
   var tr2 = createTr();
+  tr2.appendChild(createTd(this.name));
   for(var i = 0; i < this.salesPerDay.length; i++){
     var td = createTd (this.salesPerDay[i]);
     tr2.appendChild(td);
@@ -65,7 +68,7 @@ function createTd (data){
   return td;
 }
 
-var newStore = new Store(23,65,7);
+var newStore = new Store('First and Pike',23,65,7);
 newStore.createData ();
 newStore.toHTML ();
 
