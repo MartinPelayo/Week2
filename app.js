@@ -17,7 +17,7 @@ Store.prototype.cookiesPerHour = function () {
   return this.cookieSale * this.randomCustomer();
 };
 
-Store.prototype.soterHours = function () {
+Store.prototype.storeHours = function () {
   for(var i = 0; i < 15; i++){
     storeHours[i];
     console.log (storeHours[i]);
@@ -29,46 +29,46 @@ Store.prototype.salesPerDay = function () {
     this.salesPerDay.push(this.cookiesPerHour());
   }
 };
-function toHTMLB () {
+Store.prototype.toHTML = function() {
   var thetable = document.getElementById ('thetable');
-  var tr = document.createElement('tr');
-  var th = document.createElement('th');
-  var thA;
+  var tr = createTr();
   for(var i = 0; i < storeHours.length; i++){
-    thA = document.createElement('th');
-    thA.textContent = storeHours[i];
-
-    tr.appendChild(thA);
-
-
+    var th = createTh(storeHours[i]);
+    tr.appendChild(th);
   }
+
   thetable.appendChild(tr);
-  tr.appendChild(th);
 
-
-
-
-
-};
-toHTMLB ();
-
-Store.prototype.toHTMLB = function () {
-  var thetable = document.getElementById ('thetable');
-  var tr2 = document.createElement('tr');
-  var td = document.createElement('td');
-  var td;
+  var tr2 = createTr();
   for(var i = 0; i < this.salesPerDay.length; i++){
-    thB = document.createElement('td');
-
+    thB = createTr();
     thB.textContent = this.salesPerDay[i];
 
-    tr2.appendChild(td);
+    tr2.appendChild(thB);
   }
-  thetable.appendChild(td);
-  tr2.appendChild(th2);
+  tablebody.appendChild(tr);
+
 };
+toHTML ();
+
+function createTr (){
+  return document.createElement('tr');
+};
+
+function createTh (data){
+  var th = document.createElement('th');
+  var node = document.createTextNode(data);
+  th.appendChild(node);
+  return th;
+};
+
+
+
+
+
+
+
 // Store.prototype.toHTML d= function
-() {
 //   var thetable = document.getElementById ('thetable');
 //   var tr2 = document.createElement('tr2');
 //   var th2 = document.createElement('th2');
@@ -84,8 +84,9 @@ Store.prototype.toHTMLB = function () {
 // };
 
 
-var newStore = new Store();
+var newStore = new Store(a,b,c);
 newStore.toHTML ();
+// newStore.toHTMLB ();
 
 
 // CookieStore.prototype.toHtml = function() {
