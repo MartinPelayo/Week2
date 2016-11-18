@@ -1,4 +1,5 @@
 'use strict';
+var thetable = document.getElementById ('thetable');
 var storeHours = ['6am', '7am','8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 function Store (name,minCust,maxCust,cookieSale) {
   this.name = name;
@@ -31,15 +32,6 @@ Store.prototype.createData = function () {
   }
 };
 Store.prototype.toHTML = function() {
-  var thetable = document.getElementById ('thetable');
-  var tr = createTr();
-  tr.appendChild(createTh(''));
-  for(var i = 0; i < storeHours.length; i++){
-    var th = createTh(storeHours[i]);
-    tr.appendChild(th);
-  }
-
-  thetable.appendChild(tr);
 
   var tr2 = createTr();
   tr2.appendChild(createTd(this.name));
@@ -68,10 +60,24 @@ function createTd (data){
   return td;
 }
 
+function createHeader (){
+  var tr = createTr();
+  tr.appendChild(createTh(''));
+  for(var i = 0; i < storeHours.length; i++){
+    var th = createTh(storeHours[i]);
+    tr.appendChild(th);
+  }
+  thetable.appendChild(tr);
+}
+
+
+createHeader();
 var newStore = new Store('First and Pike',23,65,7);
 newStore.createData ();
 newStore.toHTML ();
-
+var newStore2 = new Store('SeaTac Airport',23,65,7);
+newStore2.createData ();
+newStore2.toHTML ();
 
 
 
